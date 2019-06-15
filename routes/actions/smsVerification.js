@@ -12,7 +12,7 @@ module.exports = function sendVerificationSms(code = "", phone_number = "") {
     .create({
       body: `Your easyTransit verification code is ${code}`,
       from: twilio_phone_number,
-      to: "+2347067285492"
+      to: phone_number
     })
     .then(message => {
       if (message.errorCode !== null) {

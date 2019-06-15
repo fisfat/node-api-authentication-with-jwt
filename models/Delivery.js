@@ -17,8 +17,9 @@ const DeliverySchema = new Schema({
   delivery_address: {
     type: String
   },
-  alternative_phone_number: {
-    type: String
+  recipient_phone_number: {
+    type: String,
+    reuired: true
   },
   delivery_code: {
     type: String,

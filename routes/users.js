@@ -2,13 +2,12 @@ const router = require("express").Router();
 const validateSigUpInput = require("./validation/validateUserInput");
 const validateLoginInput = require("./validation/validateLoginInput");
 const { Sentry, secret } = require("../config");
-const sgMail = require("@sendgrid/mail");
 const bcrypt = require("bcryptjs");
 const makeCode = require("../utils/codeGen");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-const smsEvent = require("./events");
+const { smsEvent, emailEvent } = require("./events");
 
 const User = require("../models/User");
 const Verification = require("../models/Verification");
@@ -135,6 +134,11 @@ router.post(
           Verification.findOneAndDelete({ user });
           User.findOne({ _id: user }).then(new_user => {
             new_user.phone_verify = true;
+            emailEvent.emit(
+              "sendEmail",
+              "Hearty welcome to EasyTransit",
+              new_user.email
+            );
             new_user.save().then(user => res.json(user));
           });
         }

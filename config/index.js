@@ -10,5 +10,6 @@ module.exports = {
   Sentry: Sentry,
   sid: process.env.TWILIO_ACCOUNT_SID,
   twilio_token: process.env.TWILIO_AUTH_TOKEN,
-  twilio_phone_number: process.env.TWILIO_PHONE_NUMBER
+  twilio_phone_number: process.env.TWILIO_PHONE_NUMBER,
+  sendgridApiKey: process.env.SENDGRID_API_KEY
 };
