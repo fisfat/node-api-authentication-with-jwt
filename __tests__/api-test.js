@@ -3,12 +3,15 @@ const User = require("../models/User");
 
 const git = require("simple-git");
 
-afterAll(() => {
-  git()
+afterAll(async () => {
+  const command = await git()
     .add("./*")
     .commit(`This was done after test today ${new Date().getDate}`)
-    .push("origin", "Authentication")
-    .exec(() => console.log("Test Pushed agai"));
+    .push("origin", "Authentication");
+
+  if (command) {
+    git().exec(() => console.log("Done"));
+  }
 });
 describe("#getUser() using async/await", () => {
   test("should load user data", async () => {
