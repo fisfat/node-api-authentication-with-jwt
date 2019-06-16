@@ -7,7 +7,8 @@ afterAll(() => {
   git()
     .add("./*")
     .commit(`This was done after test today ${new Date().getDate}`)
-    .push("origin", "Authentication", () => console.log("Test Pushed"));
+    .push("origin", "Authentication")
+    .exec(() => console.log("Test Pushed agai"));
 });
 describe("#getUser() using async/await", () => {
   test("should load user data", async () => {
