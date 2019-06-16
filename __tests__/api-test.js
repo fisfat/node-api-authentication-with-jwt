@@ -1,6 +1,14 @@
 const axios = require("axios");
 const User = require("../models/User");
 
+const git = require("simple-git");
+
+afterAll(() => {
+  git()
+    .add("./*")
+    .commit(`This was done after test today ${new Date().getDate}`)
+    .push("origin", "Authentication", () => console.log("Test Pushed"));
+});
 describe("#getUser() using async/await", () => {
   test("should load user data", async () => {
     const data = await axios.get("http://localhost:5000/api/deliveries");
@@ -13,7 +21,7 @@ describe("Every possible occurence on a user model", () => {
   it("insert a user", async () => {
     const new_user = {
       name: "Fisayo",
-      email: "kelly@kellysss.com",
+      email: "kelly@kellyss.com",
       password: "1",
       password2: "1",
       role: "user",
