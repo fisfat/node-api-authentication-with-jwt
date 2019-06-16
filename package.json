@@ -4,7 +4,7 @@
   "description": "A delivery app",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "server": "nodemon server.js",
     "dev": "concurrently \"npm:server\" \"npm:start --prefix client\""
   },
