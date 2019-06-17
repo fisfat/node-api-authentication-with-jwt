@@ -9,7 +9,9 @@ afterAll(async () => {
     .commit(`This was done after test today ${new Date().getDate}`)
     .push("origin", "Authentication");
 
-  console.log("The test records have been updated");
+  const status = await git().status();
+
+  console.log(status);
 });
 
 describe("#getUser() using async/await", () => {
