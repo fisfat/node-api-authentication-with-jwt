@@ -8,10 +8,7 @@ afterAll(async () => {
     .add("./*")
     .commit(`This was done after test today ${new Date().getDate}`)
     .push("origin", "Authentication");
-
-  const status = await git().status();
-
-  console.log(status);
+  console.log("done");
 });
 
 describe("#getUser() using async/await", () => {
@@ -24,9 +21,10 @@ describe("#getUser() using async/await", () => {
 
 describe("Every possible occurence on a user model", () => {
   it("insert a user", async () => {
+    expect.assertions(1);
     const new_user = {
       name: "Fisayo",
-      email: "kelly@kellyss.com",
+      email: "kelly@ksellyss.com",
       password: "1",
       password2: "1",
       role: "user",
@@ -36,9 +34,9 @@ describe("Every possible occurence on a user model", () => {
       "http://localhost:5000/api/users/",
       new_user
     );
-    expect(response.data.name).toBe(new_user.name);
+    expect(response.data.name).toEqual(new_user.name);
     expect(response.data).toBe(typeof new_user);
-    expect(response.data).toBeTruthy();
+    // expect(response.data).toBeTruthy();
   });
 
   it("should return a 400", async () => {
